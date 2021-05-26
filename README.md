@@ -6,13 +6,9 @@ that if you have a C function that accepts a function pointer like a `void
 to the closure to a `void *` and pass in a shim function pointer that will
 convert it back and call it.
 
-Note that we need to use a double-reference `&mut &mut dyn FnMut()` here, as a
-`&dyn FnMut()` is a fat pointer containing a vtable pointer. The same principle
-applies with a `Box<Box<dyn FnMut()>>`.
-
 Also note that if the closure is stored anywhere else and then invoked later,
-the reference would be invalid. In this case, we use a `Box<Box<dyn FnMut()>>`;
-see the `c_deferred_call`/`c_do_deferred_call` example.
+the reference would be invalid. In this case, we use a `Box`; see the
+`c_deferred_call`/`c_do_deferred_call` example.
 
 ## Build Instructions
 
